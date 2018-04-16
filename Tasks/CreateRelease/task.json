@@ -17,10 +17,17 @@
   "version": {
     "Major": "0",
     "Minor": "3",
-    "Patch": "0"
+    "Patch": "15"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "CreateRelease $(message)",
+  "groups": [
+    {
+        "name": "advanced",
+        "displayName": "Advanced",
+        "isExpanded": false
+    }
+  ],
   "inputs": [
     {
       "name": "LinkedReleaseDefinitionVSTSConnectedServiceName",
@@ -69,6 +76,32 @@
       "label": "Release Description",
       "helpMarkDown":"This text will be added to Release Description",
       "required": false
+    },
+    {
+      "name": "waitForLinkedRelease",
+      "type": "boolean",
+      "label": "Fail on linked release failure",
+      "helpMarkDown":"Wait until linked release finish and check its status. If linked release has failed, fail current release too",
+      "defaultValue": "false",
+      "required": false,
+      "groupName":"advanced"
+    },
+    {
+      "name": "LinkedReleaseWaitTimeout",
+      "type": "number",
+      "label": "Timeout (minutes)",
+      "helpMarkDown":"If linked release doesn't finish after timeout, treat it as failure",
+      "defaultValue": "5",
+      "required": false,
+      "groupName":"advanced"
+    },
+    {
+      "name": "slidingTimeoutForLinkedRelease",
+      "type": "boolean",
+      "label": "Double timeout if linked release is in progress",
+      "defaultValue": "true",
+      "required": false,
+      "groupName":"advanced"
     }
   ],
   "dataSourceBindings": [

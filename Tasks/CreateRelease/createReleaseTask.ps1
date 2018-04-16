@@ -17,15 +17,19 @@ param()
     $endpoint = Get-EndPoint LinkedReleaseDefinitionVSTSConnectedServiceName 
     $authHeader = Get-AuthHeaderValue $endpoint
 
+    $waitForEnd = (Get-VstsInput -Name waitForLinkedRelease) -eq "true"
+    $waitTimeout = [int] (Get-VstsInput -Name LinkedReleaseWaitTimeout)
+    $slidingTimeout = (Get-VstsInput -Name slidingTimeoutForLinkedRelease) -eq "true"
+
     $manualEnvironments = Get-SuspendedEnvironments $endpoint $releaseDefinitionId $releaseDefinitionEnvironment
     $getArtifactsUrl = "$($endpoint.url)_apis/Release/artifacts/versions?releaseDefinitionId=$releaseDefinitionId"
     $createReleaseUrl = "$($endpoint.url)_apis/release/releases?api-version=4.1-preview"
-
+    $getReleaseEnvironment = "$($endpoint.url)_apis/Release/releases/{0}/environments/{1}?api-version=4.1-preview.5"
 
     try {
         "-----------------------------------------------------------------"
         "Get lastes artifacts for release definition #$releaseDefinitionId"
-        "About to send request: $getArtifactsUrl"
+        "About to send request: $getArtifactsUrl" 
         $result = Invoke-WebRequest -Method Get -Uri $getArtifactsUrl -ContentType "application/json" -Headers @{Authorization=$authHeader}
         $result
         $json = ConvertFrom-Json $result.Content
@@ -125,3 +129,45 @@ $acc
 
     "Request response:"
     $newRelease
+
+    if ($waitForEnd -eq $True) {
+        "Wait for linked release..."
+
+        $json = ConvertFrom-Json $newRelease.Content
+        $releaseId = $json.id
+        $envId = $json.environments | Where-Object { $_.name -eq $releaseDefinitionEnvironment }  | Select-Object -ExpandProperty id
+
+        $url = $getReleaseEnvironment -f $releaseId, $envId        
+        "Linked Release details: $url"
+
+        $attempt = 0
+        $failAfter = [DateTime]::Now.AddMinutes($waitTimeout)
+
+        while ($failAfter -gt [DateTime]::Now) {
+            $delay = ExponentialDelay $attempt ($waitTimeout * 60  / 2d )
+            $attempt++
+            Start-Sleep -s $delay
+            "Check release status $attempt..."
+
+            $result = Invoke-WebRequest -Method Get -Uri $url -ContentType "application/json" -Headers @{Authorization=$authHeader}
+            $status = (ConvertFrom-Json $result.Content).status
+
+            $status
+            if ($status -eq 'succeeded') {
+                return 0
+            } 
+            if ($status -eq 'inProgress' -and $slidingTimeout) {
+                $waitTimeout = $waitTimeout * 2
+                $failAfter = $failAfter.AddMinutes($waitTimeout)
+            }
+            if($status -eq 'failed') {
+                Write-Error "Linked Release failed"
+            }
+            if($status -eq 'canceled') {
+                Write-Error "Linked Release canceled"
+            }
+        }
+        Write-Error "Failed by timeout ($waitTimeout mins)"
+
+    } 
+    "... end"
