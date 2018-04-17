@@ -17,8 +17,10 @@
 ![asd](../imgs/add-service-step-2.png)
 
 1. Choose name
-2. URL should contain project name and Put Access Token
+2. URL should contain project name
+
     `http://<vsts-account>.vsrm.visualstudio.com/<project-name>/`
+    
     * Do not forget trailing slash '/'!
 3. Leave User Name empty
 4. Put your new Access Token
