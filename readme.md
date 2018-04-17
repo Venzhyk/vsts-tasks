@@ -16,9 +16,9 @@ Repo contains helper tasks for Visual Studio Team Services that I'm using for my
 # Create Release Task
 
 Creates new release as part of current release pipe line.
-This task requires `Generic Service Endpoint` to your project on VSTS service.
 
-[step by step instruction here](docs/new-connected-service.md)
+>This task requires `Generic Service Endpoint` to your project on VSTS service.
+>[Step by step instruction here](docs/new-connected-service.md)
 
 ## Options
 
