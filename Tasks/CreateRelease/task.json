@@ -17,7 +17,7 @@
   "version": {
     "Major": "0",
     "Minor": "3",
-    "Patch": "15"
+    "Patch": "16"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "CreateRelease $(message)",
@@ -80,8 +80,8 @@
     {
       "name": "waitForLinkedRelease",
       "type": "boolean",
-      "label": "Fail on linked release failure",
-      "helpMarkDown":"Wait until linked release finish and check its status. If linked release has failed, fail current release too",
+      "label": "Wait linked release finish",
+      "helpMarkDown":"Wait until linked release finish and check its status. If linked release has failed, fail current release too. \n\n ** NB! Task will wait until child release finish and keep agent queue slot. If the same agent serves both releases, this option might couse deadlock! **",
       "defaultValue": "false",
       "required": false,
       "groupName":"advanced"
