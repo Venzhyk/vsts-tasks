@@ -1,11 +1,14 @@
 
+
 ## 1. Go to Account Security Settings and add new AccessToken.
 
 
 ![asd](../imgs/add-access-token-step-1.png) 
 ![asd](../imgs/add-access-token-step-2.png)
 
-`Release (read, write, execute and manage)` scope shold be enough for `Create Release` task.
+> `Release (read, write, execute and manage)` scope shold be enough for `Create Release` task.
+>
+>
 
 ![asd](../imgs/add-access-token-step-3.png)
 
