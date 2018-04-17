@@ -27,7 +27,7 @@ Creates new release as part of current release pipe line.
 3. Install tfx-cli tool (*npm should be preinstalled on local machine*)
 
     `> npm i -g tfx-cli`
-4. Login to your VSTS account
+4. Login into your VSTS account
 
     `> tfx login`
     * Service URL: `https://<account-name>.visualstudio.com/DefaultCollection`
@@ -39,7 +39,7 @@ Creates new release as part of current release pipe line.
 
 6. Open any release definition and add new task to `Agent Phase`
 
-![add Create Release Task](imgs\create-release-task-step-1.png)
+![add Create Release Task](imgs/create-release-task-step-1.png)
 
 7. Set task options
 
