@@ -18,7 +18,7 @@ Repo contains helper tasks for Visual Studio Team Services that I'm using for my
 Creates new release as part of current release pipe line.
 
 >This task requires `Generic Service Endpoint` to your project on VSTS service.
->[Step by step instruction here](docs/new-connected-service.md)
+>[Step by step instruction here](https://github.com/Venzhyk/vsts-tasks/blob/master/docs/new-connected-service.md)
 
 
 ## How to install
@@ -31,7 +31,7 @@ Creates new release as part of current release pipe line.
 
     `> tfx login`
     * Service URL: `https://<account-name>.visualstudio.com/DefaultCollection`
-    * Personal access token: [see instuction how to generate new](/docs/new-connected-service.md)
+    * Personal access token: [see instuction how to generate new](https://github.com/Venzhyk/vsts-tasks/blob/master/docs/new-connected-service.md)
 
 5. Upload Task to VSTS instance
 
@@ -39,7 +39,7 @@ Creates new release as part of current release pipe line.
 
 6. Open any release definition and add new task to `Agent Phase`
 
-![add Create Release Task](imgs/create-release-task-step-1.png)
+![add Create Release Task](https://github.com/Venzhyk/vsts-tasks/raw/master/imgs/create-release-task-step-1.png)
 
 7. Set task options
 
@@ -60,4 +60,4 @@ Creates new release as part of current release pipe line.
     * Just triger child release and successfully finish current task
 7. Set timeout, after which child release will be treated as failed
 
-![create release ui](imgs/create-release-task.png)
+![create release ui](https://github.com/Venzhyk/vsts-tasks/raw/master/imgs/create-release-task.png)
