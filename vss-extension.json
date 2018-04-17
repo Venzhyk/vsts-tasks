@@ -1,0 +1,70 @@
+{
+	"manifestVersion": 1,
+	"id": "vnzk-vsts-tasks",
+	"name": "VSTS Creare Release Task",
+	"version": "0.1.0",
+	"publisher": "venzhyk",
+	"public": true,
+	"targets": [
+		{
+			"id": "Microsoft.VisualStudio.Services"
+		}
+	],
+	"scope": [
+		"vso.build",
+		"vso.release"
+	],
+	"description": "Creates new release as part of current release pipe line.",
+	"categories": [
+		"Build and release"
+	],
+	"tags": [
+		"build",
+		"release",
+		"trigger",
+        "tasks",
+        "linked",
+        "create"
+	],
+	"content": {
+		"details": {
+			"path": "README.md"
+		},
+		"license": {
+			"path": "LICENSE",
+			"contentType": "text/plain"
+		}
+	},
+	"links": {
+		"getstarted": {
+			"uri": "https://github.com/Venzhyk/vsts-tasks"
+		},
+		"support": {
+			"uri": "https://github.com/Venzhyk/vsts-tasks/issues"
+		}
+	},
+	"branding": {
+		"color": "#eff1f3",
+		"theme": "light"
+	},
+	"icons": {
+		"default": "Tasks/CreateRelease/icon.png"
+	},
+	"files": [
+		{
+			"path": "Tasks/CreateRelease/"
+		}
+	],
+	"contributions": [
+		{
+			"id": "vnzk.Tasks.CreateRelease",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "Tasks/CreateRelease"
+			}
+		}
+	]
+}
