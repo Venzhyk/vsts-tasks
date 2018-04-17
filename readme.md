@@ -1,17 +1,6 @@
 # VSTS Tasks
 
-Repo contains helper tasks for Visual Studio Team Services that I'm using for my work.
-
-# Disclaimer
->**There is no any commitments to support or to enhance current functionality.**
->
->No guarantee that any issue or feature request will be addressed.
->All sources are provided as is.
->
->However, you are welcome to use and copy all source codes.
->Also, you might create a pull-request and it might be accepted.
-
-
+Tasks for Visual Studio Team Services
 
 # Create Release Task
 
@@ -38,3 +27,17 @@ Creates new release as part of current release pipe line.
 7. Set timeout, after which child release will be treated as failed
 
 ![create release ui](https://github.com/Venzhyk/vsts-tasks/raw/master/imgs/create-release-task.png)
+
+
+
+
+# Disclaimer
+>**There are no any commitments to support or to enhance current functionality.**
+>
+>No guarantee that any issue or feature request will be addressed.
+>All sources are provided as is.
+>
+>However, you are welcome to use and copy all source codes.
+>Also, you might create a pull-request and it might be accepted.
+
+You also can [install tasks without VSTS Market](https://github.com/Venzhyk/vsts-tasks/blob/master/docs/install-without-market.md)
